@@ -1,27 +1,42 @@
-# 🧪 Critérios de Aceitação (BDD) — Encerramento de Conta
+## Ativ. SO - BDD
 
-## ✅ Cenários Positivos
+## Encerramento de Conta
 
-### **1. Encerramento permitido**
-**Dado** que o usuário não possui saldo nem débitos  
-**Quando** solicita encerramento  
-**Então** o sistema deve encerrar a conta.
-
-### **2. Tentativa de acesso após encerramento**
-**Dado** que o usuário encerra a conta com sucesso  
-**Quando** tenta acessá-la novamente  
-**Então** o sistema deve exibir a mensagem **"Conta encerrada"**.
+**Como** cliente do banco  
+**Quero** transferir dinheiro entre minhas contas ou para outra conta  
+**Para** pagar minhas contas e realizar pagamentos do dia a dia.
 
 ---
 
-## ❌ Cenários Negativos
+## Descrição
 
-### **3. Conta com saldo positivo**
-**Dado** que o usuário possui saldo positivo  
-**Quando** solicita encerramento  
-**Então** o sistema deve recusar e exibir **"Conta não pode ser encerrada com saldo disponível"**.
+O sistema deve permitir que um cliente autenticado selecione uma conta de origem, informe a conta de destino e o valor da transferência.  
+O sistema valida:
 
-### **4. Conta com pendências financeiras**
-**Dado** que o usuário possui empréstimos ou débitos pendentes  
-**Quando** solicita encerramento  
-**Então** o sistema deve recusar com a mensagem **"Conta possui pendências financeiras"**.
+- Se há saldo suficiente  
+- Se a conta de destino existe  
+
+Em caso de sucesso:
+
+- Debita o valor da conta de origem  
+- Credita o valor da conta de destino  
+- Registra a operação com data/hora
+
+---
+
+## Critérios de aceitação
+
+- A transferência só pode ocorrer se o cliente estiver **autenticado**.
+- O sistema **não deve permitir** transferências com **saldo insuficiente**.
+- O sistema **não deve permitir** transferências para **conta inexistente**.
+
+### Em caso de sucesso, o sistema deve:
+
+- Debitar o valor da conta de origem  
+- Creditar o valor da conta de destino  
+- Registrar data/hora e valor da operação  
+
+### Em caso de erro:
+
+- Exibir uma mensagem clara  
+- Não alterar nenhum saldo das contas  
